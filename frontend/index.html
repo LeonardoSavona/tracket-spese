@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spese Tracker</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>Le mie spese</h1>
+
+  <section>
+    <h2>Nuova spesa</h2>
+    <input id="descrizione" placeholder="Descrizione" />
+    <input id="importo" type="number" placeholder="Importo" />
+    <button onclick="aggiungiSpesa()">Aggiungi</button>
+  </section>
+
+  <section>
+    <h2>Elenco spese</h2>
+    <ul id="lista-spese"></ul>
+    <button onclick="sync()">📤 Sincronizza con Google Sheets</button>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
