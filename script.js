@@ -1,4 +1,4 @@
-const BACKEND_URL = "https://tracker-spese-be.onrender.com/"; // cambia con il tuo URL
+const BACKEND_URL = "https://tracker-spese-be.onrender.com"; // cambia con il tuo URL
 
 let spese = JSON.parse(localStorage.getItem("spese")) || [];
 let daPagare = JSON.parse(localStorage.getItem("daPagare")) || [];
