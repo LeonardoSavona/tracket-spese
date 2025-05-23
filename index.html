@@ -1,27 +1,38 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Spese Tracker</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <title>Le Mie Spese</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Le mie spese</h1>
 
-  <section>
-    <h2>Nuova spesa</h2>
-    <input id="descrizione" placeholder="Descrizione" />
-    <input id="importo" type="number" placeholder="Importo" />
-    <button onclick="aggiungiSpesa()">Aggiungi</button>
-  </section>
+<div id="login">
+  <h1>Login</h1>
+  <input type="password" id="password" placeholder="Password">
+  <button onclick="login()">Entra</button>
+  <div id="login-error" style="color: red; display: none;">Password errata</div>
+</div>
 
-  <section>
-    <h2>Elenco spese</h2>
-    <ul id="lista-spese"></ul>
-    <button onclick="sync()">📤 Sincronizza con Google Sheets</button>
-  </section>
+<div id="app" style="display: none;">
+  <h1>Le mie Spese</h1>
+  <button onclick="logout()">Logout</button>
 
-  <script src="script.js"></script>
+  <h2>Spese</h2>
+  <ul id="lista-spese"></ul>
+  <input id="nuova-spesa" placeholder="Nuova spesa">
+  <button onclick="aggiungiSpesa()">Aggiungi</button>
+
+  <h2>Da Pagare</h2>
+  <ul id="lista-da-pagare"></ul>
+  <input id="nuova-da-pagare" placeholder="Nuova da pagare">
+  <button onclick="aggiungiDaPagare()">Aggiungi</button>
+
+  <hr>
+  <button onclick="sincronizza()">Sincronizza</button>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
