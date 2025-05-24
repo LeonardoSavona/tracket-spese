@@ -23,14 +23,50 @@ function aggiornaListe() {
 }
 
 function aggiungiSpesa() {
-  const val = document.getElementById("nuova-spesa").value;
-  if (val) {
-    spese.push(val);
-    document.getElementById("nuova-spesa").value = "";
-    salva();
-    aggiornaListe();
+  const carta = document.getElementById("carta").value;
+  const descrizione = document.getElementById("descrizione-spesa").value;
+  const importo = document.getElementById("importo-spesa").value;
+  const data = document.getElementById("data-spesa").value || new Date().toISOString().split("T")[0];
+
+  if (!descrizione || !importo) {
+    alert("Inserisci almeno descrizione e importo.");
+    return;
   }
+
+  const voce = {
+    carta,
+    descrizione,
+    importo,
+    data
+  };
+
+  spese.push(voce);
+  salva();
+  aggiornaListaSpese();
+
+  // Pulisci i campi
+  document.getElementById("descrizione-spesa").value = "";
+  document.getElementById("importo-spesa").value = "";
+  document.getElementById("data-spesa").value = "";
 }
+
+function aggiornaListaSpese() {
+  const lista = document.getElementById("lista-spese");
+  lista.innerHTML = "";
+  spese.forEach((voce, index) => {
+    const li = document.createElement("li");
+    li.textContent = `[${voce.carta}] ${voce.descrizione} - ${voce.importo}€ (${voce.data})`;
+    li.onclick = () => {
+      if (confirm("Vuoi eliminare questa spesa?")) {
+        spese.splice(index, 1);
+        salva();
+        aggiornaListaSpese();
+      }
+    };
+    lista.appendChild(li);
+  });
+}
+
 
 function aggiungiDaPagare() {
   const val = document.getElementById("nuova-da-pagare").value;
@@ -95,26 +131,46 @@ function sincronizza() {
     });
 }
 
-function login() {
-  const pass = document.getElementById("password").value;
+function mostraSezione(sezione) {
+  const spese = document.getElementById("sezione-spese");
+  const daPagare = document.getElementById("sezione-da-pagare");
+  const btnSpese = document.getElementById("btn-spese");
+  const btnDaPagare = document.getElementById("btn-da-pagare");
 
-  fetch(BACKEND_URL + "/auth", {
-    method: "POST",
-    headers: {
-      "Authorization": "Bearer " + pass
-    }
-  })
-    .then(res => {
-      if (res.ok) {
-        localStorage.setItem("userPassword", pass);
-        mostraApp();
-      } else {
-        document.getElementById("login-error").style.display = "block";
-      }
-    })
-    .catch(() => {
-      alert("Errore di rete");
-    });
+  if (sezione === "spese") {
+    spese.style.display = "block";
+    daPagare.style.display = "none";
+    btnSpese.classList.add("active");
+    btnDaPagare.classList.remove("active");
+  } else {
+    spese.style.display = "none";
+    daPagare.style.display = "block";
+    btnSpese.classList.remove("active");
+    btnDaPagare.classList.add("active");
+  }
+}
+
+function login() {
+  mostraApp()
+  // const pass = document.getElementById("password").value;
+
+  // fetch(BACKEND_URL + "/auth", {
+  //   method: "POST",
+  //   headers: {
+  //     "Authorization": "Bearer " + pass
+  //   }
+  // })
+  //   .then(res => {
+  //     if (res.ok) {
+  //       localStorage.setItem("userPassword", pass);
+  //       mostraApp();
+  //     } else {
+  //       document.getElementById("login-error").style.display = "block";
+  //     }
+  //   })
+  //   .catch(() => {
+  //     alert("Errore di rete");
+  //   });
 }
 
 function mostraApp() {

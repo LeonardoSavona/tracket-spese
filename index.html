@@ -16,21 +16,50 @@
 </div>
 
 <div id="app" style="display: none;">
-  <h1>Le mie Spese</h1>
-  <button onclick="logout()">Logout</button>
 
-  <h2>Spese</h2>
-  <ul id="lista-spese"></ul>
-  <input id="nuova-spesa" placeholder="Nuova spesa">
-  <button onclick="aggiungiSpesa()">Aggiungi</button>
+  <header>
+    <div id="left-btn" class="header-btn">
+      <button onclick="logout()">Logout</button>
+    </div>
+    <h1>Le Mie Spese</h1>
+    <div id="right-btn" class="header-btn">
+      <button onclick="sincronizza()">Sync</button>
+    </div>
+  </header>
 
-  <h2>Da Pagare</h2>
-  <ul id="lista-da-pagare"></ul>
-  <input id="nuova-da-pagare" placeholder="Nuova da pagare">
-  <button onclick="aggiungiDaPagare()">Aggiungi</button>
+  <div id="selettore-sezione">
+    <button id="btn-spese" class="tab-btn active" onclick="mostraSezione('spese')">Spese</button>
+    <button id="btn-da-pagare" class="tab-btn" onclick="mostraSezione('da-pagare')">Da Pagare</button>
+  </div>
 
-  <hr>
-  <button onclick="sincronizza()">Sincronizza</button>
+  <div id="sezione-spese">
+    <div class="form-riga">
+      <select id="carta">
+        <option value="Visa">Visa</option>
+        <option value="Mastercard">Mastercard</option>
+        <option value="Revolut">Revolut</option>
+      </select>
+
+      <input id="descrizione-spesa" placeholder="Descrizione">
+      <input id="importo-spesa" placeholder="Importo (€)">
+      <input id="data-spesa" type="date">
+    </div>
+
+    <div class="form-riga">
+      <button onclick="aggiungiSpesa()">Aggiungi</button>
+    </div>
+
+    <ul id="lista-spese"></ul>
+  </div>
+
+
+  <div id="sezione-da-pagare" style="display: none;">
+    <h2>Da Pagare</h2>
+    <ul id="lista-da-pagare"></ul>
+    <input id="nuova-da-pagare" placeholder="Nuova da pagare">
+    <button onclick="aggiungiDaPagare()">Aggiungi</button>
+  </div>
+
 </div>
 
 <script src="script.js"></script>
