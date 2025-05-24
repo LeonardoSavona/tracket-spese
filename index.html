@@ -35,14 +35,16 @@
   <div id="sezione-spese">
     <div class="form-riga">
       <select id="carta">
-        <option value="Visa">Visa</option>
-        <option value="Mastercard">Mastercard</option>
         <option value="Revolut">Revolut</option>
+        <option value="Banco BPM">Banco BPM</option>
+        <option value="Trade Republic">Trade Republic</option>
       </select>
+      <input id="data-spesa" type="date">
+    </div>
 
+    <div class="form-riga">
       <input id="descrizione-spesa" placeholder="Descrizione">
       <input id="importo-spesa" placeholder="Importo (€)">
-      <input id="data-spesa" type="date">
     </div>
 
     <div class="form-riga">
@@ -53,12 +55,24 @@
   </div>
 
 
-  <div id="sezione-da-pagare" style="display: none;">
-    <h2>Da Pagare</h2>
-    <ul id="lista-da-pagare"></ul>
-    <input id="nuova-da-pagare" placeholder="Nuova da pagare">
+<div id="sezione-da-pagare" style="display: none;">
+  <div class="form-riga">
+    <input id="descrizione-da-pagare" placeholder="Descrizione">
+    <input id="importo-da-pagare" placeholder="Importo (€)">
+  </div>
+
+  <div class="form-riga">
+    <h3>Scadenza: </h3>
+    <input id="scadenza-da-pagare" type="date">
+  </div>
+
+  <div class="form-riga">
     <button onclick="aggiungiDaPagare()">Aggiungi</button>
   </div>
+
+  <ul id="lista-da-pagare"></ul>
+</div>
+
 
 </div>
 

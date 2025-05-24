@@ -9,17 +9,8 @@ function salva() {
 }
 
 function aggiornaListe() {
-  const speseUl = document.getElementById("lista-spese");
-  speseUl.innerHTML = "";
-  spese.forEach((s, i) => {
-    speseUl.innerHTML += `<li>${s} <button onclick="rimuoviSpesa(${i})">✖</button></li>`;
-  });
-
-  const daPagareUl = document.getElementById("lista-da-pagare");
-  daPagareUl.innerHTML = "";
-  daPagare.forEach((s, i) => {
-    daPagareUl.innerHTML += `<li>${s} <button onclick="rimuoviDaPagare(${i})">✖</button></li>`;
-  });
+  aggiornaListaSpese();
+  aggiornaListaDaPagare();
 }
 
 function aggiungiSpesa() {
@@ -47,7 +38,7 @@ function aggiungiSpesa() {
   // Pulisci i campi
   document.getElementById("descrizione-spesa").value = "";
   document.getElementById("importo-spesa").value = "";
-  document.getElementById("data-spesa").value = "";
+  document.getElementById("data-spesa").value = new Date().toISOString().split("T")[0];
 }
 
 function aggiornaListaSpese() {
@@ -55,39 +46,57 @@ function aggiornaListaSpese() {
   lista.innerHTML = "";
   spese.forEach((voce, index) => {
     const li = document.createElement("li");
-    li.textContent = `[${voce.carta}] ${voce.descrizione} - ${voce.importo}€ (${voce.data})`;
-    li.onclick = () => {
-      if (confirm("Vuoi eliminare questa spesa?")) {
-        spese.splice(index, 1);
-        salva();
-        aggiornaListaSpese();
-      }
-    };
+    li.innerHTML = `[${voce.carta}] ${voce.descrizione} - ${voce.importo}€ (${voce.data}) <button onclick="rimuoviSpesa(${index})">✖</button>`;
     lista.appendChild(li);
   });
-}
-
-
-function aggiungiDaPagare() {
-  const val = document.getElementById("nuova-da-pagare").value;
-  if (val) {
-    daPagare.push(val);
-    document.getElementById("nuova-da-pagare").value = "";
-    salva();
-    aggiornaListe();
-  }
 }
 
 function rimuoviSpesa(index) {
   spese.splice(index, 1);
   salva();
-  aggiornaListe();
+  aggiornaListaSpese();
+}
+
+function aggiungiDaPagare() {
+  const descrizione = document.getElementById("descrizione-da-pagare").value;
+  const importo = document.getElementById("importo-da-pagare").value;
+  const scadenza = document.getElementById("scadenza-da-pagare").value || new Date().toISOString().split("T")[0];
+
+  if (!descrizione || !importo) {
+    alert("Inserisci almeno descrizione e importo.");
+    return;
+  }
+
+  const voce = {
+    descrizione,
+    importo,
+    scadenza
+  };
+
+  daPagare.push(voce);
+  salva();
+  aggiornaListaDaPagare();
+
+  // Pulisci i campi
+  document.getElementById("descrizione-da-pagare").value = "";
+  document.getElementById("importo-da-pagare").value = "";
+  document.getElementById("scadenza-da-pagare").value = new Date().toISOString().split("T")[0];
+}
+
+function aggiornaListaDaPagare() {
+  const lista = document.getElementById("lista-da-pagare");
+  lista.innerHTML = "";
+  daPagare.forEach((voce, index) => {
+    const li = document.createElement("li");
+    li.innerHTML = `${voce.descrizione} - ${voce.importo}€ (scade il ${voce.scadenza}) <button onclick="rimuoviDaPagare(${index})">✖</button>`;
+    lista.appendChild(li);
+  });
 }
 
 function rimuoviDaPagare(index) {
   daPagare.splice(index, 1);
   salva();
-  aggiornaListe();
+  aggiornaListaDaPagare();
 }
 
 function sincronizza() {
@@ -121,6 +130,7 @@ function sincronizza() {
       if (data && data.status === "ok") {
         alert("Sincronizzazione completata!");
         spese = [];
+        daPagare = [];
         salva();
         aggiornaListe();
       }
@@ -151,7 +161,7 @@ function mostraSezione(sezione) {
 }
 
 function login() {
-  mostraApp()
+  mostraApp();
   // const pass = document.getElementById("password").value;
 
   // fetch(BACKEND_URL + "/auth", {
@@ -203,3 +213,12 @@ window.onload = function () {
       });
   }
 };
+
+document.addEventListener("DOMContentLoaded", () => {
+  const oggi = new Date().toISOString().split("T")[0];
+  const dataSpesa = document.getElementById("data-spesa");
+  if (dataSpesa) dataSpesa.value = oggi;
+
+  const dataDaPagare = document.getElementById("scadenza-da-pagare");
+  if (dataDaPagare) dataDaPagare.value = oggi;
+});
