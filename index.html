@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Le Mie Spese</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="login">
+  <h1>Login</h1>
+  <input type="password" id="password" placeholder="Password">
+  <button onclick="login()">Entra</button>
+  <div id="login-error" style="color: red; display: none;">Password errata</div>
+</div>
+
+<div id="app" style="display: none;">
+
+  <header>
+    <div id="left-btn" class="header-btn">
+      <button onclick="logout()">Logout</button>
+    </div>
+    <h1>Le Mie Spese</h1>
+    <div id="right-btn" class="header-btn">
+      <button onclick="sincronizza()">Sync</button>
+    </div>
+  </header>
+
+  <div id="selettore-sezione">
+    <button id="btn-spese" class="tab-btn active" onclick="mostraSezione('spese')">Spese</button>
+    <button id="btn-da-pagare" class="tab-btn" onclick="mostraSezione('da-pagare')">Da Pagare</button>
+  </div>
+
+  <div id="sezione-spese">
+    <div class="form-riga">
+      <select id="carta">
+        <option value="Revolut">Revolut</option>
+        <option value="Banco BPM">Banco BPM</option>
+        <option value="Trade Republic">Trade Republic</option>
+      </select>
+      <input id="data-spesa" type="date">
+    </div>
+
+    <div class="form-riga">
+      <input id="descrizione-spesa" placeholder="Descrizione">
+      <input id="importo-spesa" placeholder="Importo (€)">
+    </div>
+
+    <div class="form-riga">
+      <button onclick="aggiungiSpesa()">Aggiungi</button>
+    </div>
+
+    <ul id="lista-spese"></ul>
+  </div>
+
+
+<div id="sezione-da-pagare" style="display: none;">
+  <div class="form-riga">
+    <input id="descrizione-da-pagare" placeholder="Descrizione">
+    <input id="importo-da-pagare" placeholder="Importo (€)">
+  </div>
+
+  <div class="form-riga">
+    <h3>Scadenza: </h3>
+    <input id="scadenza-da-pagare" type="date">
+  </div>
+
+  <div class="form-riga">
+    <button onclick="aggiungiDaPagare()">Aggiungi</button>
+  </div>
+
+  <ul id="lista-da-pagare"></ul>
+</div>
+
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
