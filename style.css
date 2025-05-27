@@ -1,6 +1,5 @@
 body {
   font-family: sans-serif;
-  padding: 1em;
   background: #f0f0f0;
 }
 
@@ -139,7 +138,6 @@ header button {
 
 .col {
   flex: 1 1 0;
-  max-width: 200px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -152,7 +150,6 @@ header button {
 }
 
 .riga-dati button {
-  margin-left: 8px;
   color: red;
   background: none;
   border: none;
