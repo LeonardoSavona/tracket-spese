@@ -44,21 +44,27 @@
 
     <div class="form-riga">
       <input id="descrizione-spesa" placeholder="Descrizione">
-      <input id="importo-spesa" placeholder="Importo (€)">
+      <input id="importo-spesa" type="number" step="0.01" min="0" lang="it" placeholder="0,00 (€)"/>
     </div>
 
     <div class="form-riga">
       <button onclick="aggiungiSpesa()">Aggiungi</button>
     </div>
 
-    <ul id="lista-spese"></ul>
+    <div class="lista-header" id="header-spese">
+      <div class="col">Carta</div>
+      <div class="col">Descrizione</div>
+      <div class="col">Importo</div>
+      <div class="col">Data</div>
+    </div>
+    <ul id="lista-spese" class="lista-righe"></ul>
   </div>
 
 
 <div id="sezione-da-pagare" style="display: none;">
   <div class="form-riga">
     <input id="descrizione-da-pagare" placeholder="Descrizione">
-    <input id="importo-da-pagare" placeholder="Importo (€)">
+    <input id="importo-da-pagare" type="number" step="0.01" min="0" lang="it" placeholder="0,00 (€)"/>
   </div>
 
   <div class="form-riga">
@@ -70,7 +76,12 @@
     <button onclick="aggiungiDaPagare()">Aggiungi</button>
   </div>
 
-  <ul id="lista-da-pagare"></ul>
+  <div class="lista-header" id="header-da-pagare">
+    <div class="col">Descrizione</div>
+    <div class="col">Importo</div>
+    <div class="col">Scadenza</div>
+  </div>
+  <ul id="lista-da-pagare" class="lista-righe"></ul>
 </div>
 
 

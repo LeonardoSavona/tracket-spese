@@ -3,16 +3,7 @@ const BACKEND_URL = "https://tracker-spese-be.onrender.com"; // cambia con il tu
 let spese = JSON.parse(localStorage.getItem("spese")) || [];
 let daPagare = JSON.parse(localStorage.getItem("daPagare")) || [];
 
-function salva() {
-  localStorage.setItem("spese", JSON.stringify(spese));
-  localStorage.setItem("daPagare", JSON.stringify(daPagare));
-}
-
-function aggiornaListe() {
-  aggiornaListaSpese();
-  aggiornaListaDaPagare();
-}
-
+// SPESE
 function aggiungiSpesa() {
   const carta = document.getElementById("carta").value;
   const descrizione = document.getElementById("descrizione-spesa").value;
@@ -46,10 +37,18 @@ function aggiornaListaSpese() {
   lista.innerHTML = "";
   spese.forEach((voce, index) => {
     const li = document.createElement("li");
-    li.innerHTML = `[${voce.carta}] ${voce.descrizione} - ${voce.importo}€ (${voce.data}) <button onclick="rimuoviSpesa(${index})">✖</button>`;
+    li.className = "riga-dati";
+    li.innerHTML = `
+      <div class="col">${voce.carta}</div>
+      <div class="col">${voce.descrizione}</div>
+      <div class="col">${Number(voce.importo).toFixed(2)}€</div>
+      <div class="col">${voce.data}</div>
+      <button onclick="rimuoviSpesa(${index})">✖</button>
+    `;
     lista.appendChild(li);
   });
 }
+
 
 function rimuoviSpesa(index) {
   spese.splice(index, 1);
@@ -57,6 +56,7 @@ function rimuoviSpesa(index) {
   aggiornaListaSpese();
 }
 
+// DA PAGARE
 function aggiungiDaPagare() {
   const descrizione = document.getElementById("descrizione-da-pagare").value;
   const importo = document.getElementById("importo-da-pagare").value;
@@ -88,7 +88,13 @@ function aggiornaListaDaPagare() {
   lista.innerHTML = "";
   daPagare.forEach((voce, index) => {
     const li = document.createElement("li");
-    li.innerHTML = `${voce.descrizione} - ${voce.importo}€ (scade il ${voce.scadenza}) <button onclick="rimuoviDaPagare(${index})">✖</button>`;
+    li.className = "riga-dati";
+    li.innerHTML = `
+      <div class="col">${voce.descrizione}</div>
+      <div class="col">${Number(voce.importo).toFixed(2)}€</div>
+      <div class="col">${voce.scadenza}</div>
+      <button onclick="rimuoviDaPagare(${index})">✖</button>
+    `;
     lista.appendChild(li);
   });
 }
@@ -99,6 +105,7 @@ function rimuoviDaPagare(index) {
   aggiornaListaDaPagare();
 }
 
+// SYNC
 function sincronizza() {
   const password = localStorage.getItem("userPassword");
   if (!password) {
@@ -141,6 +148,17 @@ function sincronizza() {
     });
 }
 
+function salva() {
+  localStorage.setItem("spese", JSON.stringify(spese));
+  localStorage.setItem("daPagare", JSON.stringify(daPagare));
+}
+
+function aggiornaListe() {
+  aggiornaListaSpese();
+  aggiornaListaDaPagare();
+}
+
+// FRONTEND DINAMICO
 function mostraSezione(sezione) {
   const spese = document.getElementById("sezione-spese");
   const daPagare = document.getElementById("sezione-da-pagare");
@@ -160,6 +178,13 @@ function mostraSezione(sezione) {
   }
 }
 
+function mostraApp() {
+  document.getElementById("login").style.display = "none";
+  document.getElementById("app").style.display = "block";
+  aggiornaListe();
+}
+
+// LOGIN / LOGOUT
 function login() {
   const pass = document.getElementById("password").value;
 
@@ -182,18 +207,28 @@ function login() {
     });
 }
 
-function mostraApp() {
-  document.getElementById("login").style.display = "none";
-  document.getElementById("app").style.display = "block";
-  aggiornaListe();
-}
-
 function logout() {
   localStorage.removeItem("userPassword");
   document.getElementById("app").style.display = "none";
   document.getElementById("login").style.display = "block";
 }
 
+// EVENT LISTENERS
+function troncaADueDecimali(e) {
+  const value = e.target.value;
+  const parts = value.split(/[.,]/);
+  if (parts.length === 2 && parts[1].length > 0) {
+    e.target.value = parts[0] + "." + parts[1].slice(0, 2);
+  }
+}
+
+const inputImportoSpesa = document.getElementById("importo-spesa");
+inputImportoSpesa.addEventListener("input", troncaADueDecimali);
+
+const inputImportoDaPagare = document.getElementById("importo-da-pagare");
+inputImportoDaPagare.addEventListener("input", troncaADueDecimali);
+
+// ON LOAD FUNCTIONS
 window.onload = function () {
   const pass = localStorage.getItem("userPassword");
   if (pass) {

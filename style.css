@@ -116,3 +116,46 @@ header button {
   border-radius: 6px;
   cursor: pointer;
 }
+
+.riga-dati .col {
+  align-self: center;
+}
+
+.lista-header, .riga-dati {
+  display: flex;
+  border-bottom: 1px solid #ccc;
+  padding: 8px 0;
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.lista-header {
+  font-weight: bold;
+  border-top: 1px solid #ccc;
+  border-bottom: 2px solid #999;
+  margin-top: 16px;
+}
+
+.col {
+  flex: 1 1 0;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 4px;
+  border-right: 1px solid #ddd;
+}
+
+.col:last-child {
+  border-right: none;
+}
+
+.riga-dati button {
+  margin-left: 8px;
+  color: red;
+  background: none;
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
+}
