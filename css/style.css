@@ -88,6 +88,12 @@ li {
   align-self: center;
 }
 
+
+.riga-dati button {
+  align-self: center;
+  border: none;
+}
+
 .lista-header, .riga-dati {
   display: flex;
   border-bottom: 1px solid #ccc;
@@ -117,12 +123,16 @@ li {
   border-right: none;
 }
 
-.riga-dati button {
+.lista-header button, .riga-dati button {
   color: red;
   background: none;
   border: none;
   cursor: pointer;
   flex-shrink: 0;
+}
+
+.lista-header button {
+  color: black;
 }
 
 /* Overlay a schermo intero */

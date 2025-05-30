@@ -53,12 +53,10 @@ window.onload = function () {
   const inputImportoDaPagare = document.getElementById("importo-da-pagare");
   inputImportoDaPagare.addEventListener("input", troncaADueDecimali);
 
-  document.addEventListener("DOMContentLoaded", () => {
-    const oggi = new Date().toISOString().split("T")[0];
-    const dataSpesa = document.getElementById("data-spesa");
-    if (dataSpesa) dataSpesa.value = oggi;
+  const oggi = new Date().toISOString().split("T")[0];
+  const dataSpesa = document.getElementById("data-spesa");
+  if (dataSpesa) dataSpesa.value = oggi;
 
-    const dataDaPagare = document.getElementById("scadenza-da-pagare");
-    if (dataDaPagare) dataDaPagare.value = oggi;
-  });
+  const dataDaPagare = document.getElementById("scadenza-da-pagare");
+  if (dataDaPagare) dataDaPagare.value = oggi;
 };
