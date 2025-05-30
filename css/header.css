@@ -1,0 +1,56 @@
+header {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f0f0f0;
+  border-bottom: 1px solid #ccc;
+  height: 60px;
+}
+
+.header-side {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  z-index: 1;
+}
+
+.header-side.left {
+  justify-content: flex-start;
+}
+
+.header-side.right {
+  justify-content: flex-end;
+}
+
+header h1 {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  font-size: 1.5em;
+  z-index: 0;
+}
+
+header button {
+  background-color: #eee;
+  border: 1px solid #ccc;
+  padding: 6px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+.icon {
+  width: 2em;
+  height: 2em;
+  background-color: #eee;
+  padding: 6px;
+  border-radius: 2em;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.icon:hover {
+  background-color: #cacaca;
+}

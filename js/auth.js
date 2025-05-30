@@ -3,7 +3,7 @@ import { BACKEND_URL, mostraApp } from "./script.js";
 let isLoggedIn = false;
 let pingInterval;
 
-function checkLogin() {
+export function checkLogin() {
     const password = getPassword();
     if (password) {
         loginSuccess(password);
@@ -77,11 +77,6 @@ function initPingServer() {
   }, 1000 * 60 * 1); // ogni 5 minuti
 }
 
-function getPassword() {
+export function getPassword() {
     return localStorage.getItem("userPassword") || document.getElementById("password").value;
 }
-
-// ON LOAD FUNCTIONS
-window.onload = function () {
-  checkLogin();
-};

@@ -2,9 +2,10 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8">
-  <title>Le Mie Spese</title>
+  <title>MyBudget Hub</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/header.css">
 </head>
 <body>
 
@@ -18,12 +19,17 @@
 <div id="app" style="display: none;">
 
   <header>
-    <div id="left-btn" class="header-btn">
+    <div id="logout-btn" class="header-side left">
       <button onclick="logout()">Logout</button>
     </div>
-    <h1>Le Mie Spese</h1>
-    <div id="right-btn" class="header-btn">
-      <button onclick="sincronizza()">Sync</button>
+    <h1>MyBudget Hub</h1>
+    <div id="sync-btn" class="header-side right">
+      <a onclick="sincronizza()">
+        <img src="./img/sync.png" alt="Sincronizza" class="icon">
+      </a>
+       <a href="./pages/settings.html" title="Settings">
+         <img src="./img/ingranaggio.png" alt="Settings" class="icon">
+      </a>
     </div>
   </header>
 

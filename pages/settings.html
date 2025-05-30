@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>MyBudget Hub</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/settings.css">
+</head>
+<body>
+    <header>
+        <div id="logout-btn" class="header-side left">
+            <button onclick="logout()">Logout</button>
+        </div>
+        <h1>Settings</h1>
+        <div id="home-btn" class="header-side right">
+            <a href="../index.html" title="Home">
+                <img src="../img/home.png" alt="Home" class="icon">
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <div class="settings-row">
+            <button id="add-setting-btn" class="add-button">+ Add</button>
+        </div>
+        <div id="settings-container"></div>
+        <button id="save-settings-btn">Save</button>
+    </main>
+
+    <script type="module" src="../js/settings.js"></script>
+
+    <div id="loading-overlay" style="display: none;">
+        <div class="spinner"></div>
+    </div>
+
+    <div id="success-popup">Sincronizzazione completata!</div>
+
+</body>
+</html>

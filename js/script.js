@@ -3,6 +3,7 @@ import * as sync from "./sync.js";
       
 window.logout = auth.logout;
 window.login = auth.login;
+window.checkLogin = auth.checkLogin;
 window.aggiungiSpesa = sync.aggiungiSpesa;
 window.aggiungiDaPagare = sync.aggiungiDaPagare;
 window.sincronizza = sync.sincronizza;
@@ -44,17 +45,20 @@ function troncaADueDecimali(e) {
   }
 }
 
-const inputImportoSpesa = document.getElementById("importo-spesa");
-inputImportoSpesa.addEventListener("input", troncaADueDecimali);
+window.onload = function () {
+  checkLogin();
+  const inputImportoSpesa = document.getElementById("importo-spesa");
+  inputImportoSpesa.addEventListener("input", troncaADueDecimali);
 
-const inputImportoDaPagare = document.getElementById("importo-da-pagare");
-inputImportoDaPagare.addEventListener("input", troncaADueDecimali);
+  const inputImportoDaPagare = document.getElementById("importo-da-pagare");
+  inputImportoDaPagare.addEventListener("input", troncaADueDecimali);
 
-document.addEventListener("DOMContentLoaded", () => {
-  const oggi = new Date().toISOString().split("T")[0];
-  const dataSpesa = document.getElementById("data-spesa");
-  if (dataSpesa) dataSpesa.value = oggi;
+  document.addEventListener("DOMContentLoaded", () => {
+    const oggi = new Date().toISOString().split("T")[0];
+    const dataSpesa = document.getElementById("data-spesa");
+    if (dataSpesa) dataSpesa.value = oggi;
 
-  const dataDaPagare = document.getElementById("scadenza-da-pagare");
-  if (dataDaPagare) dataDaPagare.value = oggi;
-});
+    const dataDaPagare = document.getElementById("scadenza-da-pagare");
+    if (dataDaPagare) dataDaPagare.value = oggi;
+  });
+};

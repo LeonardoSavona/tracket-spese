@@ -1,0 +1,65 @@
+body {
+    font-family: sans-serif;
+    background: #f0f0f0;
+}
+
+main {
+    max-width: 800px;
+    margin: 4rem auto;
+    padding: 2rem;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.settings-row {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.settings-key,
+.settings-value {
+    flex: 1;
+    border: 1px solid #ccc;
+    padding: 0.75rem 1rem;
+    border-radius: 5px;
+    background-color: #fafafa;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 120px;
+    max-width: 22rem;
+}
+
+.settings-value {
+    background-color: #ffffff;
+}
+
+.settings-key {
+    font-weight: bold;
+}
+
+#save-settings-btn,
+#add-setting-btn {
+    align-self: flex-end;
+    padding: 0.6rem 1.5rem;
+    background-color: #e0e0e0;
+    border: 1px solid #888;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+#save-settings-btn:hover,
+#add-setting-btn:hover {
+    background-color: #d0d0d0;
+}
