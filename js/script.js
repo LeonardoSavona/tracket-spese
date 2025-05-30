@@ -9,7 +9,7 @@ window.aggiungiDaPagare = sync.aggiungiDaPagare;
 window.sincronizza = sync.sincronizza;
 window.mostraSezione = mostraSezione;
 
-export const BACKEND_URL = "http://localhost:5000"; // cambia con il tuo URL
+export const BACKEND_URL = "https://tracker-spese-be.onrender.com"; // cambia con il tuo URL
 
 function mostraSezione(sezione) {
   const spese = document.getElementById("sezione-spese");

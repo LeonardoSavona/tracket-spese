@@ -29,7 +29,7 @@ export function login() {
         }
     })
     .catch((e) => {
-        alert("Errore di rete"+e);
+        alert("Errore di rete: "+e);
     });
   }
 }
